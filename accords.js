@@ -12,4 +12,4 @@ let findAccordByNote = (inputNote = 'C', major = true) => {
   return [accords[index], accords[second], accords[third]]
 }
 
-console.log(findAccordByNote('cdf', true))
+console.log(findAccordByNote('c', true))

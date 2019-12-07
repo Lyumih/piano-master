@@ -5,14 +5,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script defer src="js/index.js"></script>
   <title>Piano Master</title>
 </head>
 
 <body>
-  <h2>Pianino Master - Сайт для обучения игре на пианино с совершенно новым подходом. Уже через 15 минут вы сможете
-    сыграть
-    свою песню (а так же любую другую вашу любимую песню)</h2>
-
+  <div id="app" class="container">
+    <h3>Pianino Master - Сайт для обучения игре на пианино с совершенно новым подходом. </h3>
+    <p> Уже через 15 минут вы сможете сыграть свою песню (а так же любую другую вашу любимую песню)</p>
+    <div>
+      <table width='100%'>
+        <tr>
+          <th>Аккорд</th>
+          <th>На русском</th>
+          <th>Ноты</th>
+          <th>Ноты на русском</th>
+        </tr>
+        <tr v-for="(accord, index) in accords">
+          <td>{{accord.accord}} </td>
+          <td>{{accord.accordRus}} </td>
+          <td>{{accord.notes.join(" ")}} </td>
+          <td>{{accord.notesRus.join(" ")}} </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </body>
 
 </html>
