@@ -1,14 +1,16 @@
 var app = new Vue({
   el: "#app",
   data: {
+    majorSelected: true,
     notesEng: ['A', 'A#', 'H', 'C', 'C#', 'D', "D#", "E", "F", "F#", 'G', 'G#'],
     notesRus: ['Ля', 'Ля#', 'Си', 'До', 'До#', 'Ре', "Ре#", "Ми", "Фа", "Фа#", 'Соль', 'Соль#'],
-    noteList: ['A', 'C', 'E', 'G']
+    accordList: ['A', 'C', 'E', 'G'],
+    accordSelected: 'A',
   },
   computed: {
     accords() {
-      return this.noteList.map(note => {
-        let index = this.notesEng.findIndex(noteEng => noteEng.toLowerCase() === note.toLowerCase())
+      return this.accordList.map(note => {
+        let index = this.notesEng.findIndex(noteEng => noteEng.toLowerCase() === note.toLowerCase().replace('m', ''))
         if (index === -1) return []
         let major = note.includes('m')
         let second = (index + (major ? 4 : 3)) % 12
@@ -20,6 +22,11 @@ var app = new Vue({
           notesRus: [this.notesRus[index], this.notesRus[second], this.notesRus[third]]
         }
       })
+    }
+  },
+  methods: {
+    remove(array, index) {
+      this.$delete(array, index)
     }
   },
 })
