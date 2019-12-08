@@ -63,12 +63,50 @@
               <div>
                 <div>
                   <h3>Подготовка - 10 мин</h3>
-                  <h4>Задача: посмотреть видео и выписать аккорды вашей песни на лист бумаги</h4>
+                  <h4>Задача: выпишите аккорды вашей песни на лист бумаги и посмотрите видео</h4>
+                  <hr>
+
+                  <div>
+                    <p><i>Нарисуй на листке данную таблицу:</i></p>
+
+                    <table width='100%' class="table  table-responsive">
+                      <caption>
+                        <div class="form-inline"><button class="btn btn-primary"
+                            @click="accordList.push(accordSelected + ( majorSelected ? '' : 'm'))">Добавить
+                            аккорд</button>
+                          <div class="custom-control custom-checkbox mx-3">
+                            <input class="custom-control-input" type="checkbox" id="major" v-model="majorSelected">
+                            <label class="custom-control-label" for="major">Мажор</label>
+                          </div>
+                          <select class="custom-select" v-model="accordSelected">
+                            <option :value="note" v-for="note in notesEng">
+                              {{note}}{{majorSelected? '' : 'm'}}
+                            </option>
+                          </select>
+                        </div>
+                      </caption>
+                      <tr>
+                        <th>Удалить</th>
+                        <th>Аккорд</th>
+                        <th>На русском</th>
+                        <th>Ноты</th>
+                        <th>Ноты на русском</th>
+                      </tr>
+                      <tr v-for="(accord, index) in accords">
+                        <td><button class="btn btn-warning" @click="remove(accordList, index)">-</button> </td>
+                        <td>{{accord.accord}}</td>
+                        <td>{{accord.accordRus}} </td>
+                        <td>{{accord.notes.join(" ")}} </td>
+                        <td>{{accord.notesRus.join(" ")}} </td>
+                      </tr>
+                    </table>
+                  </div>
                   <div>
                     <iframe width="100%" height="315" src="https://www.youtube.com/embed/F70JXh-2H00" frameborder="0"
                       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                       allowfullscreen></iframe>
                   </div>
+                  <hr>
                   <table class="table">
                     <tr>
                       <th>Название нот</th>
@@ -81,38 +119,6 @@
                       <td width="50%">
                         <img class="img-fluid" src='https://www.legato.su/stati/img/tablica-akkordov.jpg'>
                       </td>
-                    </tr>
-                  </table>
-
-                  <div class="form-inline"><button class="btn btn-primary"
-                      @click="accordList.push(accordSelected + ( majorSelected ? '' : 'm'))">Добавить
-                      аккорд</button>
-                    <div class="custom-control custom-checkbox mx-3">
-                      <input class="custom-control-input" type="checkbox" id="major" v-model="majorSelected">
-                      <label class="custom-control-label" for="major">Мажор</label>
-                    </div>
-                    <select class="custom-select" v-model="accordSelected">
-                      <option :value="note" v-for="note in notesEng">
-                        {{note}}{{majorSelected? '' : 'm'}}
-                      </option>
-                    </select>
-                  </div>
-                  <p>Тебе нужно на листке нарисовать следующую таблицу:</p>
-
-                  <table width='100%' class="table  table-responsive">
-                    <tr>
-                      <th>Удалить</th>
-                      <th>Аккорд</th>
-                      <th>На русском</th>
-                      <th>Ноты</th>
-                      <th>Ноты на русском</th>
-                    </tr>
-                    <tr v-for="(accord, index) in accords">
-                      <td><button class="btn btn-warning" @click="remove(accordList, index)">-</button> </td>
-                      <td>{{accord.accord}}</td>
-                      <td>{{accord.accordRus}} </td>
-                      <td>{{accord.notes.join(" ")}} </td>
-                      <td>{{accord.notesRus.join(" ")}} </td>
                     </tr>
                   </table>
 
@@ -193,9 +199,10 @@
     <hr>
     <div style="margin-bottom: 150px;">
       <h2>Поздравляю! Вы стали добились успеха в вашей песне!</h2>
-      <div>Продолжайте оттачивать своё мастерство или найдите новую песню, которая вам нравится. Пишите мне в вк
-        https://vk.com/lyu_mih , буду рад вам помочь и пообщаться! И если вы ещё не сыграли ни одной ноты - то дело не в
-        том, что вы ничего не умеете. Вы просто ленивы
+      <div>Продолжайте оттачивать своё мастерство или найдите новую песню, которая вам нравится.
+        <br>Пишите мне в вк <a href="https://vk.com/lyu_mih">vk.com/lyu_mih</a> , буду рад вам помочь и пообщаться! <br>
+        P.S. И если вы ещё не сыграли ни одной ноты - то дело не в
+        том, что вы ничего не умеете. Вы просто ленивец
       </div>
     </div>
 
@@ -203,8 +210,8 @@
       <div class="row">
         <div>♥ Сайт полностью бесплатен ♥</div>
         <div>♥ Благодарим за 💰🙋🍨 ♥</div>
-        <div>♥ Сбербанка: 89105990489 ♥</div>
-        <div>♥ Вконтакте: <a target="_blank" href="https://vk.com/lyu_mih">vk.com/lyu_mih</a> ♥</div>
+        <div>♥ Сбербанк: 89105990489 ♥</div>
+        <div>♥ ВКонтакте: <a target="_blank" href="https://vk.com/lyu_mih">vk.com/lyu_mih</a> ♥</div>
       </div>
     </nav>
 
