@@ -29,30 +29,19 @@
       <ul class="list-group">
         <li class="list-group-item"><a target=" _blank" href="https://www.onlinepianist.com/virtual-piano">Пианино
             здесь!</a></li>
-        <li class="list-group-item"><a target="_blank" href="https://amdm.ru/akkordi/nirvana/4313/rape_me/">Песня Rape
-            Me</a></li>
+        <li class="list-group-item"><a target="_blank" href="https://amdm.ru/akkordi/nirvana/4313/rape_me/">Песенник
+            Rape Me</a></li>
       </ul>
     </div>
-    <div>
-      <h3>Pianino Master - Сайт для обучения игре на пианино с совершенно новым подходом. </h3>
-      <p> Уже через 15 минут вы сможете сыграть свою песню (а так же любую другую вашу любимую песню)</p>
-      <p>Если у вас нет пианино, держите - <a target="_blank"
-          href="https://www.onlinepianist.com/virtual-piano">https://www.onlinepianist.com/virtual-piano</a></p>
-    </div>
-    <div>
-      Сайт полностью бесплатен. <br>
-      Спасибо за добровольные пожертвования на автору чай :) <br>
-      Номер сбербанка: 89105990489 <br>
-      Вконтакте: https://vk.com/lyu_mih <br>
-    </div>
-    <h2>Приветствую на Pianino Mastser!</h2>
-    <p>Ты можешь позволить себе играть на пианино уже сегодня! Вот твоё пианино
-      <a target="_blank"
-        href="https://www.onlinepianist.com/virtual-piano">https://www.onlinepianist.com/virtual-piano</a>
-    </p>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">Piano Master - Играй на пианино уже через 15 минут</a>
+    </nav>
+    <div class="alert">
+      <h2>Добро пожаловать!</h2>
 
-    <p>Как это работает? На примере Nirvana: Rape Me https://music.yandex.ru/album/5576245/track/36246</p>
-
+      Сайт бесплатен. Благодарю за 💰🙋🍨 . Сбербанка: 89105990489
+      Вконтакте: <a target="_blank" href="https://vk.com/lyu_mih">vk.com/lyu_mih</a>
+    </div>
     <div>
 
     </div>
@@ -65,7 +54,7 @@
         <div class="col-3">
           <div class="nav flex-column nav-pills" id="lvl-tab" role="tablist" aria-orientation="vertical">
             <a class="nav-link active" id="intro-tab" data-toggle="pill" href="#intro" role="tab" aria-controls="intro"
-              aria-selected="true">Подготовка 5 мин</a>
+              aria-selected="true">Подготовка 10 мин</a>
             <a class="nav-link" id="newbie-tab" data-toggle="pill" href="#newbie" role="tab" aria-controls="newbie"
               aria-selected="false">Новичок 5 мин</a>
             <a class="nav-link" id="veteran-tab" data-toggle="pill" href="#veteran" role="tab" aria-controls="veteran"
@@ -79,25 +68,28 @@
             <div class="tab-pane fade show active" id="intro" role="tabpanel" aria-labelledby="intro">
               <div>
                 <div>
-                  <h3>Подготовка - 5 мин</h3>
-                  <p>Посмотрите нащвание нот на данной картинке
-                    <img style="max-width: 30%;"
-                      src='http://romanovaelena.ru/wp-content/uploads/2012/10/Obuchenie-igre-na-sintezatore1.jpg'> <br>
-                    Вот здесь можно найти все ноты <img style="max-width: 30%;"
-                      src='https://www.legato.su/stati/img/tablica-akkordov.jpg'> <br>
+                  <h3>Подготовка - 10 мин</h3>
+                  <h4>Задача: посмотреть видео и выписать аккорды вашей песни на лист бумаги</h4>
+                  <div>
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/F70JXh-2H00" frameborder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen></iframe>
+                  </div>
+                  <table class="table">
+                    <tr>
+                      <th>Название нот</th>
+                      <th>Аккорды на пианино</th>
+                    </tr>
+                    <tr>
+                      <td width="50%"><img class="img-fluid"
+                          src='http://romanovaelena.ru/wp-content/uploads/2012/10/Obuchenie-igre-na-sintezatore1.jpg'>
+                      </td>
+                      <td width="50%">
+                        <img class="img-fluid" src='https://www.legato.su/stati/img/tablica-akkordov.jpg'>
+                      </td>
+                    </tr>
+                  </table>
 
-                    Если у вас есть пианино - подойдите к пианино. Если пианино нет - введите пианино онлайн в
-                    поисковике и выберете
-                    понравившееся. Например это https://www.onlinepianist.com/virtual-piano</p>
-                  <p>Представь, что за тебя все аккорды к песням уже написали. Введи в поискове фразу Nirvana rape me
-                    аккорды и ты
-                    получишь
-                    один из таких сайтов https://amdm.ru/akkordi/nirvana/4313/rape_me/ где есть аккорды сразу к тексту.
-                    Вот их мы и
-                    будем
-                    использовать! Задача: посмотри на аккорды к песне и напиши на листке следующую таблицу Не приступай
-                    к следующим
-                    заданиям, пока не сделаешь такую таблицу*</p>
                   <div class="form-inline"><button class="btn btn-primary"
                       @click="accordList.push(accordSelected + ( majorSelected ? '' : 'm'))">Добавить
                       аккорд</button>
@@ -111,6 +103,8 @@
                       </option>
                     </select>
                   </div>
+                  <p>Тебе нужно на листке нарисовать следующую таблицу:</p>
+
                   <table width='100%' class="table  table-responsive">
                     <tr>
                       <th>Удалить</th>
@@ -136,11 +130,19 @@
                 <div>
                   <h3>Новичок - 5 мин</h3>
                   <p>Уже на этом уровне вы сможете играть любые песни. Магия!
+                    Если у вас есть пианино - подойдите к пианино. Если пианино нет - введите пианино онлайн в
+                    поисковике и выберете
+                    понравившееся. Например это https://www.onlinepianist.com/virtual-piano
                     Задача: играть 1 ноту каждого аккорда в такт под музыку
                     У нирваны аккорды: A(Ля) C(До) E(Ми) G(Соль)
                     Значит нам надо научиться играть ноты: Ля До Ми Соль . Начните играть. Потом играйте по музыку.
                     Пианино: https://www.onlinepianist.com/virtual-piano
                     Песня: https://music.yandex.ru/album/5576245/track/36246</p>
+                  <div>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/F70JXh-2H00" frameborder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen></iframe>
+                  </div>
                 </div>
               </div>
             </div>
@@ -160,6 +162,11 @@
                     Пианино: https://www.onlinepianist.com/virtual-piano
                     Песня: https://music.yandex.ru/album/5576245/track/36246
                   </p>
+                  <div>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/F70JXh-2H00" frameborder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen></iframe>
+                  </div>
                 </div>
               </div>
             </div>
@@ -177,6 +184,11 @@
                     Соль До или ноты Соль Ми До Начните играть. Потом играйте по музыку.
                     Пианино: https://www.onlinepianist.com/virtual-piano
                     Песня: https://music.yandex.ru/album/5576245/track/36246</p>
+                  <div>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/F70JXh-2H00" frameborder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen></iframe>
+                  </div>
                 </div>
               </div>
             </div>
@@ -197,7 +209,7 @@
 
 
     <div>
-      <h2>Поздравляю! Вы стали (ничего не делал, Новичок, Опытный, Мастер) этой песни.</h2>
+      <h2>Поздравляю! Вы стали добились успеха в вашей песне!</h2>
       <div>Продолжайте оттачивать своё мастерство или найдите новую песню, которая вам нравится. Пишите мне в вк
         https://vk.com/lyu_mih , буду рад вам помочь и пообщаться! И если вы ещё не сыграли ни одной ноты - то дело не в
         том,
