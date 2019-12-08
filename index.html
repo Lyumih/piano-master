@@ -7,13 +7,32 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="css/index.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script defer src="js/index.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
   <title>Piano Master</title>
 </head>
 
 <body>
-  <div id="app" class="container">
+  <div id="app" class="container-fluid">
+    <div class="fix-block">
+      <ul class="list-group">
+        <li class="list-group-item"><a target=" _blank" href="https://www.onlinepianist.com/virtual-piano">Пианино
+            здесь!</a></li>
+        <li class="list-group-item"><a target="_blank" href="https://amdm.ru/akkordi/nirvana/4313/rape_me/">Песня Rape
+            Me</a></li>
+      </ul>
+    </div>
     <div>
       <h3>Pianino Master - Сайт для обучения игре на пианино с совершенно новым подходом. </h3>
       <p> Уже через 15 минут вы сможете сыграть свою песню (а так же любую другую вашу любимую песню)</p>
@@ -35,82 +54,148 @@
     <p>Как это работает? На примере Nirvana: Rape Me https://music.yandex.ru/album/5576245/track/36246</p>
 
     <div>
-      <h3>Уровень 0 (3 мин) - Подготовка</h3>
-      <p>Если вы ещё не знаете нот, посмотрите эту картинку
-        <img style="max-width: 30%;"
-          src='http://romanovaelena.ru/wp-content/uploads/2012/10/Obuchenie-igre-na-sintezatore1.jpg'> <br>
-        Вот здесь можно найти все ноты <img style="max-width: 30%;"
-          src='https://www.legato.su/stati/img/tablica-akkordov.jpg'> <br>
 
-        Если у вас есть пианино - подойдите к пианино. Если пианино нет - введите пианино онлайн в поисковике и выберете
-        понравившееся. Например это https://www.onlinepianist.com/virtual-piano</p>
-      <p>Представь, что за тебя все аккорды к песням уже написали. Введи в поискове фразу Nirvana rape me аккорды и ты
-        получишь
-        один из таких сайтов https://amdm.ru/akkordi/nirvana/4313/rape_me/ где есть аккорды сразу к тексту. Вот их мы и
-        будем
-        использовать! Задача: посмотри на аккорды к песне и напиши на листке следующую таблицу Не приступай к следующим
-        заданиям, пока не сделаешь такую таблицу*</p>
-      <div>Добавить аккорд: <select v-model="accordSelected">
-          <option :value="note" v-for="note in notesEng">
-            {{note}}{{majorSelected? '' : 'm'}}
-          </option>
-        </select>
-        <label for="major">Major?</label>
-        <input type="checkbox" id="major" v-model="majorSelected">
+    </div>
+    <!-- Уровни -->
+    <div>
+
+
+
+      <div class="row">
+        <div class="col-3">
+          <div class="nav flex-column nav-pills" id="lvl-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="intro-tab" data-toggle="pill" href="#intro" role="tab" aria-controls="intro"
+              aria-selected="true">Подготовка 5 мин</a>
+            <a class="nav-link" id="newbie-tab" data-toggle="pill" href="#newbie" role="tab" aria-controls="newbie"
+              aria-selected="false">Новичок 5 мин</a>
+            <a class="nav-link" id="veteran-tab" data-toggle="pill" href="#veteran" role="tab" aria-controls="veteran"
+              aria-selected="false">Опытный 10 мин</a>
+            <a class="nav-link" id="master-tab" data-toggle="pill" href="#master" role="tab" aria-controls="master"
+              aria-selected="false">Мастер 15 мин</a>
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="tab-content" id="lvl-tab-content">
+            <div class="tab-pane fade show active" id="intro" role="tabpanel" aria-labelledby="intro">
+              <div>
+                <div>
+                  <h3>Подготовка - 5 мин</h3>
+                  <p>Посмотрите нащвание нот на данной картинке
+                    <img style="max-width: 30%;"
+                      src='http://romanovaelena.ru/wp-content/uploads/2012/10/Obuchenie-igre-na-sintezatore1.jpg'> <br>
+                    Вот здесь можно найти все ноты <img style="max-width: 30%;"
+                      src='https://www.legato.su/stati/img/tablica-akkordov.jpg'> <br>
+
+                    Если у вас есть пианино - подойдите к пианино. Если пианино нет - введите пианино онлайн в
+                    поисковике и выберете
+                    понравившееся. Например это https://www.onlinepianist.com/virtual-piano</p>
+                  <p>Представь, что за тебя все аккорды к песням уже написали. Введи в поискове фразу Nirvana rape me
+                    аккорды и ты
+                    получишь
+                    один из таких сайтов https://amdm.ru/akkordi/nirvana/4313/rape_me/ где есть аккорды сразу к тексту.
+                    Вот их мы и
+                    будем
+                    использовать! Задача: посмотри на аккорды к песне и напиши на листке следующую таблицу Не приступай
+                    к следующим
+                    заданиям, пока не сделаешь такую таблицу*</p>
+                  <div class="form-inline"><button class="btn btn-primary"
+                      @click="accordList.push(accordSelected + ( majorSelected ? '' : 'm'))">Добавить
+                      аккорд</button>
+                    <div class="custom-control custom-checkbox mx-3">
+                      <input class="custom-control-input" type="checkbox" id="major" v-model="majorSelected">
+                      <label class="custom-control-label" for="major">Мажор</label>
+                    </div>
+                    <select class="custom-select" v-model="accordSelected">
+                      <option :value="note" v-for="note in notesEng">
+                        {{note}}{{majorSelected? '' : 'm'}}
+                      </option>
+                    </select>
+                  </div>
+                  <table width='100%' class="table  table-responsive">
+                    <tr>
+                      <th>Удалить</th>
+                      <th>Аккорд</th>
+                      <th>На русском</th>
+                      <th>Ноты</th>
+                      <th>Ноты на русском</th>
+                    </tr>
+                    <tr v-for="(accord, index) in accords">
+                      <td><button class="btn btn-warning" @click="remove(accordList, index)">-</button> </td>
+                      <td>{{accord.accord}}</td>
+                      <td>{{accord.accordRus}} </td>
+                      <td>{{accord.notes.join(" ")}} </td>
+                      <td>{{accord.notesRus.join(" ")}} </td>
+                    </tr>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="newbie" role="tabpanel" aria-labelledby="newbie">
+              <div>
+                <div>
+                  <h3>Новичок - 5 мин</h3>
+                  <p>Уже на этом уровне вы сможете играть любые песни. Магия!
+                    Задача: играть 1 ноту каждого аккорда в такт под музыку
+                    У нирваны аккорды: A(Ля) C(До) E(Ми) G(Соль)
+                    Значит нам надо научиться играть ноты: Ля До Ми Соль . Начните играть. Потом играйте по музыку.
+                    Пианино: https://www.onlinepianist.com/virtual-piano
+                    Песня: https://music.yandex.ru/album/5576245/track/36246</p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="veteran" role="tabpanel" aria-labelledby="veteran">
+              <div>
+                <div>
+                  <h3>Опытный - 10 мин</h3>
+                  <p>
+                    Музыка становится более насыщенной. Магия!
+
+                    Задача: играть все ноту каждого аккорда в такт под музыку
+                    У нирваны аккорды: A(Ля) C(До) E(Ми) G(Соль)
+                    Пример: Аккорд C -> ноты До Ми Соль Значит нам надо научиться играть все ноты этих аккордов
+                    одновременно из
+                    вашей
+                    таблици . Начните играть. Потом играйте по музыку.
+                    Пианино: https://www.onlinepianist.com/virtual-piano
+                    Песня: https://music.yandex.ru/album/5576245/track/36246
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="master" role="tabpanel" aria-labelledby="master">
+              <div>
+                <div>
+                  <h3>Мастер - 15 мин</h3>
+                  <p>Играть становится легче, максимум разнообразия. Магия!
+
+                    Задача: играть аккорды с любой ноты, а не только с первой
+                    У нирваны аккорды: A(Ля) C(До) E(Ми) G(Соль)
+                    Значит нам надо научиться играть с любой ноты из представленного аккорда в вашей таблице. Пример:
+                    Аккорд C ->
+                    ноты Ми
+                    Соль До или ноты Соль Ми До Начните играть. Потом играйте по музыку.
+                    Пианино: https://www.onlinepianist.com/virtual-piano
+                    Песня: https://music.yandex.ru/album/5576245/track/36246</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <table width='100%'>
-        <tr>
-          <th><button @click="accordList.push(accordSelected + ( majorSelected ? '' : 'm'))">+</button></th>
-          <th>Аккорд</th>
-          <th>На русском</th>
-          <th>Ноты</th>
-          <th>Ноты на русском</th>
-        </tr>
-        <tr v-for="(accord, index) in accords">
-          <td><button @click="remove(accordList, index)">-</button> </td>
-          <td>{{accord.accord}}</td>
-          <td>{{accord.accordRus}} </td>
-          <td>{{accord.notes.join(" ")}} </td>
-          <td>{{accord.notesRus.join(" ")}} </td>
-        </tr>
-      </table>
+    </div>
 
-    </div>
-    <div>
-      <h3>Уровень 1 (5 мин) - Новичёк</h3>
-      <p>Уже на этом уровне вы сможете играть любые песни. Магия!
-        Задача: играть 1 ноту каждого аккорда в такт под музыку
-        У нирваны аккорды: A(Ля) C(До) E(Ми) G(Соль)
-        Значит нам надо научиться играть ноты: Ля До Ми Соль . Начните играть. Потом играйте по музыку.
-        Пианино: https://www.onlinepianist.com/virtual-piano
-        Песня: https://music.yandex.ru/album/5576245/track/36246</p>
-    </div>
-    <div>
-      <h3>Уровень 2 (10 мин) - Опытный</h3>
-      <p>
-        Музыка становится более насыщенной. Магия!
 
-        Задача: играть все ноту каждого аккорда в такт под музыку
-        У нирваны аккорды: A(Ля) C(До) E(Ми) G(Соль)
-        Пример: Аккорд C -> ноты До Ми Соль Значит нам надо научиться играть все ноты этих аккордов одновременно из
-        вашей
-        таблици . Начните играть. Потом играйте по музыку.
-        Пианино: https://www.onlinepianist.com/virtual-piano
-        Песня: https://music.yandex.ru/album/5576245/track/36246
-      </p>
-    </div>
-    <div>
-      <h3>Уровень 3 (15 мин) - Мастер</h3>
-      <p>Играть становится легче, максимум разнообразия. Магия!
 
-        Задача: играть аккорды с любой ноты, а не только с первой
-        У нирваны аккорды: A(Ля) C(До) E(Ми) G(Соль)
-        Значит нам надо научиться играть с любой ноты из представленного аккорда в вашей таблице. Пример: Аккорд C ->
-        ноты Ми
-        Соль До или ноты Соль Ми До Начните играть. Потом играйте по музыку.
-        Пианино: https://www.onlinepianist.com/virtual-piano
-        Песня: https://music.yandex.ru/album/5576245/track/36246</p>
-    </div>
+
+
+
+
+
+
+
+
+
     <div>
       <h2>Поздравляю! Вы стали (ничего не делал, Новичок, Опытный, Мастер) этой песни.</h2>
       <div>Продолжайте оттачивать своё мастерство или найдите новую песню, которая вам нравится. Пишите мне в вк

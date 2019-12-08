@@ -1,0 +1,10 @@
+.fix-block {
+  background-color: blanchedalmond;
+  padding: 10px;
+
+  border: 1px solid black;
+  /* width: 150px; */
+  position: fixed;
+  top: 10%;
+  right: 0;
+}
