@@ -48,15 +48,32 @@
         <span>{{tick ? "🎜" : '🎝'}}</span>
       </div>
 
-      <div class="text-center">
+      <div>
         <table class="table">
+          <caption>Выбирите настраиваемый режим для практики</caption>
           <tr>
-            <th width="50%">Аккорд</th>
-            <th width="50%">Ноты</th>
+            <td v-for="accord in accords" :key="accord.accord">
+              <div>
+                <label :for="accord.accord">{{accord.accord}}</label>
+                <input type="checkbox" :value="accord.accord" v-model="musicKeysSelected" :id="'letter-'+accord.accord">
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p>Аккорды для проверки {{accordsFiltred.map(accord=>accord.accord)}}</p>
+
+      <div class=" text-center">
+        <table class="table table-bordered">
+          <tr>
+            <th width="20%">Аккорд</th>
+            <th width="40%">Ноты</th>
+            <th width="40%">Ноты на русском</th>
           </tr>
           <tr v-if="accordTrain">
             <td class="h1">{{accordTrain.accord}}</td>
-            <td class="h1">{{accordTrain.notes.join(" ")}}</td>
+            <td class="h1">{{accordTrain.notes.join(" | ")}}</td>
+            <td class="h1">{{accordTrain.notesRus.join(" | ")}}</td>
             <!-- <td>{{accordTrain}}</td> -->
           </tr>
         </table>

@@ -8,7 +8,10 @@ var app = new Vue({
     accords: [],
     secondsToNextAccord: 1.0,
     trainTimerId: undefined,
-    tick: false
+    tick: false,
+    musicKeys: ["A", "B", "C", "D", "E", "F", "G",],
+    musicKeysSelected: ["A", "C", "E", "G"]
+
   },
   async mounted() {
     const response = await fetch('../accords.json')
@@ -17,13 +20,22 @@ var app = new Vue({
   },
   computed: {
     accordTrain() {
-      return this.accords[this.accordTrainIndex]
+      return this.accordsFiltred[this.accordTrainIndex]
+    },
+    accordsFiltred() {
+      return this.accords.filter(accord => this.musicKeysSelected.includes(accord.accord))
     }
   },
   methods: {
     nextTrainAccord() {
       this.tick = !this.tick
-      this.accordTrainIndex = Math.floor(Math.random() * this.accords.length)
+      let preAccordIndex = this.accordTrainIndex
+      let newAccordIndex = Math.floor(Math.random() * this.accordsFiltred.length)
+      if (this.accordsFiltred.length > 1 && preAccordIndex === newAccordIndex) {
+        newAccordIndex === 0 ? newAccordIndex++ : newAccordIndex--
+        console.log(preAccordIndex, newAccordIndex)
+      }
+      this.accordTrainIndex = newAccordIndex
     },
     toggleTimerTrain() {
       console.log(this.trainTimerId)
