@@ -2,31 +2,44 @@ var app = new Vue({
   el: "#app",
   data: {
     majorSelected: true,
-    notesEng: ['A', 'A#', 'H', 'C', 'C#', 'D', "D#", "E", "F", "F#", 'G', 'G#'],
-    notesRus: ['Ля', 'Ля#', 'Си', 'До', 'До#', 'Ре', "Ре#", "Ми", "Фа", "Фа#", 'Соль', 'Соль#'],
     accordList: ['A', 'C', 'E', 'G'],
     accordSelected: 'A',
+    accordTrainIndex: 0,
+    accords: [],
+    secondsToNextAccord: 1.0,
+    trainTimerId: undefined,
+    tick: false
+  },
+  async mounted() {
+    const response = await fetch('../accords.json')
+    this.accords = await response.json()
+    this.toggleTimerTrain()
   },
   computed: {
-    accords() {
-      return this.accordList.map(note => {
-        let index = this.notesEng.findIndex(noteEng => noteEng.toLowerCase() === note.toLowerCase().replace('m', ''))
-        if (index === -1) return []
-        let major = note.includes('m')
-        let second = (index + (major ? 4 : 3)) % 12
-        let third = (index + 7) % 12
-        return {
-          accord: note,
-          accordRus: this.notesRus[index],
-          notes: [this.notesEng[index], this.notesEng[second], this.notesEng[third]],
-          notesRus: [this.notesRus[index], this.notesRus[second], this.notesRus[third]]
-        }
-      })
+    accordTrain() {
+      return this.accords[this.accordTrainIndex]
     }
   },
   methods: {
-    remove(array, index) {
-      this.$delete(array, index)
+    nextTrainAccord() {
+      this.tick = !this.tick
+      this.accordTrainIndex = Math.floor(Math.random() * this.accords.length)
+    },
+    toggleTimerTrain() {
+      console.log(this.trainTimerId)
+      if (this.trainTimerId) {
+        clearInterval(this.trainTimerId)
+        this.trainTimerId = undefined
+      }
+      else this.trainTimerId = setInterval(() => { this.nextTrainAccord() }, this.secondsToNextAccord * 1000, 0)
+    },
+    changeTrainSpeed(speed) {
+      if (this.secondsToNextAccord < 0.3 && speed < 0) return
+      this.secondsToNextAccord = this.secondsToNextAccord + speed
+      this.secondsToNextAccord = Number(this.secondsToNextAccord.toFixed(2))
+      this.toggleTimerTrain()
+      this.toggleTimerTrain()
     }
+
   },
 })

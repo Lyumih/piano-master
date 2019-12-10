@@ -24,7 +24,7 @@
 </head>
 
 <body>
-  <div id="app" class="container">
+  <div id="app" class="container-fluid">
     <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand" href="/">Piano Master</a>
     </nav>
@@ -41,33 +41,23 @@
       <div>
         <p>Аккорды на экране будут постоянно меняться. Выберете необходимый темп и аккорды, садитесь за пианино и
           начинайте их играть</p>
+        <button class="btn btn-primary" @click="toggleTimerTrain">Старт / Стоп</button>
+        <button class="btn btn-secondary" @click="changeTrainSpeed(0.1)">Медленнее</button>
+        <button class="btn btn-secondary" @click="changeTrainSpeed(-0.1)">Быстрее</button>
+        <span>Текушая скорость: {{secondsToNextAccord}} сек.</span>
+        <span>{{tick ? "🎜" : '🎝'}}</span>
       </div>
 
       <div class="text-center">
         <table class="table">
           <tr>
-            <th>Помощь</th>
-            <th>Предыдущий</th>
-            <th>Сейчас</th>
-            <th>Дальше</th>
+            <th width="50%">Аккорд</th>
+            <th width="50%">Ноты</th>
           </tr>
-          <tr>
-            <td>Аккорд</td>
-            <td>A</td>
-            <td>C</td>
-            <td>G</td>
-          </tr>
-          <tr>
-            <td>НОТЫ</td>
-            <td>A C# G</td>
-            <td>C E G</td>
-            <td>G H D</td>
-          </tr>
-          <tr>
-            <td>НОТЫ НА РУССКОМ</td>
-            <td>Ля До# Соль</td>
-            <td>До Ми Соль</td>
-            <td>Соль Си Ре</td>
+          <tr v-if="accordTrain">
+            <td class="h1">{{accordTrain.accord}}</td>
+            <td class="h1">{{accordTrain.notes.join(" ")}}</td>
+            <!-- <td>{{accordTrain}}</td> -->
           </tr>
         </table>
       </div>

@@ -1,0 +1,34 @@
+[
+  {
+    "accord": "A",
+    "notes": [
+      "A",
+      "C#",
+      "E"
+    ]
+  },
+  {
+    "accord": "C",
+    "notes": [
+      "C",
+      "E",
+      "G"
+    ]
+  },
+  {
+    "accord": "E",
+    "notes": [
+      "E",
+      "G#",
+      "H"
+    ]
+  },
+  {
+    "accord": "G",
+    "notes": [
+      "G",
+      "H",
+      "D"
+    ]
+  }
+]
