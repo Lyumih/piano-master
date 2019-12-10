@@ -17,7 +17,7 @@ var app = new Vue({
 
   },
   async mounted() {
-    const response = await fetch('./../accords.json')
+    const response = await fetch('./accords.json')
     this.accords = await response.json()
     this.toggleTimerTrain()
   },
