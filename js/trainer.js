@@ -6,7 +6,7 @@ var app = new Vue({
     accordSelected: 'A',
     accordTrainIndex: 0,
     accords: [],
-    secondsToNextAccord: 1.0,
+    secondsToNextAccord: 2.0,
     trainTimerId: undefined,
     tick: false,
     musicKeys: ["A", "B", "C", "D", "E", "F", "G",],
