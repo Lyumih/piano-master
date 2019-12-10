@@ -10,7 +10,10 @@ var app = new Vue({
     trainTimerId: undefined,
     tick: false,
     musicKeys: ["A", "B", "C", "D", "E", "F", "G",],
-    musicKeysSelected: ["A", "C", "E", "G"]
+    musicKeysSelected: ["A", "C", "E", "G"],
+    showAccord: true,
+    showNotes: true,
+    showNotesRus: true,
 
   },
   async mounted() {
@@ -33,7 +36,6 @@ var app = new Vue({
       let newAccordIndex = Math.floor(Math.random() * this.accordsFiltred.length)
       if (this.accordsFiltred.length > 1 && preAccordIndex === newAccordIndex) {
         newAccordIndex === 0 ? newAccordIndex++ : newAccordIndex--
-        console.log(preAccordIndex, newAccordIndex)
       }
       this.accordTrainIndex = newAccordIndex
     },

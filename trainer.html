@@ -34,10 +34,59 @@
         <p>Здесь вы сможете оттачивать ваш навык игре на пианино.</p>
         <p>Самый быстрый способ научиться играть - это заниматься на данном тренажере</p>
       </div>
-      <div>
-        Вы будете отрабатывать аккорды: <strong>A C E G</strong>
+
+      <p>Аккорды для проверки <strong>{{accordsFiltred.map(accord=>accord.accord).join(", ")}}</strong></p>
+
+      <div class="text-center">
+        <table class="table table-sm table-bordered" width="100%">
+          <tr v-if="accordTrain">
+            <td width="5%">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" v-model="showAccord" id="showAccord">
+                <label class="custom-control-label" for="showAccord">Аккорд</label>
+              </div>
+            </td>
+            <td class="h1">{{showAccord ? accordTrain.accord : '.'}} </td>
+            <!-- <td>{{accordTrain}}</td> -->
+          </tr>
+          <tr v-if="accordTrain">
+            <td>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" v-model="showNotes" class="custom-control-input" id="showNotes">
+                <label class="custom-control-label" for="showNotes">Ноты</label>
+              </div>
+            </td>
+            <td class="h2">{{showNotes ? accordTrain.notes.join("  ") : '. . .'}}</td>
+            <!-- <td>{{accordTrain}}</td> -->
+          </tr>
+          <tr v-if="accordTrain">
+            <td>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" v-model="showNotesRus" class="custom-control-input" id="showNotesRus">
+                <label class="custom-control-label" for="showNotesRus">Рус</label>
+              </div>
+            </td>
+            <td class="h3">{{showNotesRus ? accordTrain.notesRus.join("  ") : ". . ."}}</td>
+            <!-- <td>{{accordTrain}}</td> -->
+          </tr>
+        </table>
       </div>
 
+      <div>
+        <table class="table table-responsive">
+          <caption>Выбирите настраиваемый режим для практики</caption>
+          <tr>
+            <td v-for="accord in accords" :key="accord.accord">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" :value="accord.accord" v-model="musicKeysSelected"
+                  :id="'accord-'+accord.accord">
+                <label class="custom-control-label" :for="'accord-'+accord.accord">{{accord.accord}}</label>
+
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
       <div>
         <p>Аккорды на экране будут постоянно меняться. Выберете необходимый темп и аккорды, садитесь за пианино и
           начинайте их играть</p>
@@ -48,36 +97,7 @@
         <span>{{tick ? "🎜" : '🎝'}}</span>
       </div>
 
-      <div>
-        <table class="table">
-          <caption>Выбирите настраиваемый режим для практики</caption>
-          <tr>
-            <td v-for="accord in accords" :key="accord.accord">
-              <div>
-                <label :for="accord.accord">{{accord.accord}}</label>
-                <input type="checkbox" :value="accord.accord" v-model="musicKeysSelected" :id="'letter-'+accord.accord">
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <p>Аккорды для проверки {{accordsFiltred.map(accord=>accord.accord)}}</p>
 
-      <div class=" text-center">
-        <table class="table table-bordered">
-          <tr>
-            <th width="20%">Аккорд</th>
-            <th width="40%">Ноты</th>
-            <th width="40%">Ноты на русском</th>
-          </tr>
-          <tr v-if="accordTrain">
-            <td class="h1">{{accordTrain.accord}}</td>
-            <td class="h1">{{accordTrain.notes.join(" | ")}}</td>
-            <td class="h1">{{accordTrain.notesRus.join(" | ")}}</td>
-            <!-- <td>{{accordTrain}}</td> -->
-          </tr>
-        </table>
-      </div>
 
     </main>
 
