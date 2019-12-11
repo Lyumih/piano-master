@@ -14,6 +14,7 @@ var app = new Vue({
     showAccord: true,
     showNotes: true,
     showNotesRus: true,
+    fontSizeAccord: 250
 
   },
   async mounted() {

@@ -24,7 +24,7 @@
 </head>
 
 <body>
-  <div id="app" class="container-fluid">
+  <div id="app" class="container">
     <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand" href="./">Piano Master</a>
       <a href="./">Вернуться</a>
@@ -36,8 +36,6 @@
         <p>Самый быстрый способ научиться играть - это заниматься на данном тренажере</p>
       </div>
 
-      <p>Аккорды для проверки <strong>{{accordsFiltred.map(accord=>accord.accord).join(", ")}}</strong></p>
-
       <div class="text-center">
         <table class="table table-sm table-bordered" width="100%">
           <tr v-if="accordTrain">
@@ -47,7 +45,7 @@
                 <label class="custom-control-label" for="showAccord">Аккорд</label>
               </div>
             </td>
-            <td class="h1">{{showAccord ? accordTrain.accord : '.'}} </td>
+            <td class="h1" :style="{fontSize: fontSizeAccord+'%'}">{{showAccord ? accordTrain.accord : '.'}} </td>
             <!-- <td>{{accordTrain}}</td> -->
           </tr>
           <tr v-if="accordTrain">
@@ -57,8 +55,8 @@
                 <label class="custom-control-label" for="showNotes">Ноты</label>
               </div>
             </td>
-            <td class="h2">{{showNotes ? accordTrain.notes.join("  ") : '. . .'}}</td>
-            <!-- <td>{{accordTrain}}</td> -->
+            <td class="h2" :style="{fontSize: fontSizeAccord+'%'}">
+              {{showNotes ? accordTrain.notes.join("  ") : '. . .'}}</td>
           </tr>
           <tr v-if="accordTrain">
             <td>
@@ -67,11 +65,32 @@
                 <label class="custom-control-label" for="showNotesRus">Рус</label>
               </div>
             </td>
-            <td class="h3">{{showNotesRus ? accordTrain.notesRus.join("  ") : ". . ."}}</td>
-            <!-- <td>{{accordTrain}}</td> -->
+            <td class="h3 small" :style="{fontSize: fontSizeAccord+'%'}">
+              {{showNotesRus ? accordTrain.notesRus.join("  ") : ". . ."}}</td>
           </tr>
         </table>
       </div>
+      <p>Аккорды для проверки <strong>{{accordsFiltred.map(accord=>accord.accord).join(", ")}}</strong></p>
+      <div class="my-2">
+        <div>
+          <label for="customRange1">Величина шрифта: {{fontSizeAccord}}%</label>
+          <input type="range" v-model="fontSizeAccord" min="50" max="1000" step="10" class="custom-range"
+            id="customRange1">
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#accordFullScreen">На весь
+          экран</button>
+        <button class="btn btn-primary" @click="toggleTimerTrain">Старт /
+          Стоп</button>
+        <button class="btn btn-secondary" @click="changeTrainSpeed(0.1)">Медленнее</button>
+        <button class="btn btn-secondary" @click="changeTrainSpeed(-0.1)">Быстрее</button>
+        <span>Текушая скорость: {{secondsToNextAccord}} сек.</span>
+        <span>{{tick ? "🎜" : '🎝'}}</span>
+
+      </div>
+
+
+
+
 
       <div>
         <table class="table table-responsive">
@@ -91,15 +110,8 @@
       <div style="margin-bottom: 150px;">
         <p>Аккорды на экране будут постоянно меняться. Выберете необходимый темп и аккорды, садитесь за пианино и
           начинайте их играть</p>
-        <button class="btn btn-primary" @click="toggleTimerTrain">Старт / Стоп</button>
-        <button class="btn btn-secondary" @click="changeTrainSpeed(0.1)">Медленнее</button>
-        <button class="btn btn-secondary" @click="changeTrainSpeed(-0.1)">Быстрее</button>
-        <span>Текушая скорость: {{secondsToNextAccord}} сек.</span>
-        <span>{{tick ? "🎜" : '🎝'}}</span>
+
       </div>
-
-
-
     </main>
     <nav class="navbar fixed-bottom  navbar-light bg-light">
       <div class="row">
@@ -110,6 +122,42 @@
         <div>♥ <a target="_blank" href="https://github.com/Lyumih/piano-master">Мы на GitHub</a> ♥</div>
       </div>
     </nav>
+
+
+
+
+
+    <div class="modal fade" id="accordFullScreen" tabindex="-1" role="dialog" aria-labelledby="accordFullScreenLabel"
+      aria-hidden="true">
+
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <div class="small">
+              <label for="customRange1">Величина шрифта: {{fontSizeAccord}}%</label>
+              <input type="range" v-model="fontSizeAccord" min="50" max="1000" step="10" class="custom-range"
+                id="customRange1">
+            </div>
+          </div>
+          <div class="modal-body">
+            <table class="table table-sm table-bordered text-center" width="100%">
+              <tr v-if="accordTrain">
+                <td class="h1" :style="{fontSize: fontSizeAccord+'%'}">{{showAccord ? accordTrain.accord : '.'}} </td>
+              </tr>
+              <tr v-if="accordTrain">
+
+                <td class="h2" :style="{fontSize: fontSizeAccord+'%'}">
+                  {{showNotes ? accordTrain.notes.join("  ") : '. . .'}}</td>
+              </tr>
+              <tr v-if="accordTrain">
+                <td class="h3" :style="{fontSize: fontSizeAccord+'%'}">
+                  {{showNotesRus ? accordTrain.notesRus.join("  ") : ". . ."}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </body>
